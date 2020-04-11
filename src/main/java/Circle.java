@@ -1,44 +1,37 @@
-public class Circle implements Figure {
+public class Circle extends Figure {
 
-    private String color;
-    private double area;
     private int radius;
 
     public Circle() {
+        createRandomFigure();
     }
 
     public Circle(String color, int radius) {
-        this.color = color;
         this.radius = radius;
-        area = Math.PI * Math.pow(radius, 2);
-    }
-
-    public Figure draw() {
-        return createRandomCircle();
-    }
-
-    public double getArea() {
-        return area;
-    }
-
-    public String getColor() {
-        return color;
+        setArea(areaCalculation(radius));
+        setColor(color);
     }
 
     public int getRadius() {
         return radius;
     }
 
-    private Figure createRandomCircle() {
+    public void createRandomFigure() {
         String[] colors = {"green", "blue", "yellow", "black"};
-        int indexColor = (int) (Math.random() * 3);
-        return new Circle(colors[indexColor], (int) (Math.random() * 50) + 1);
+        int indexColor = (int) (Math.random() * 4);
+        setColor(colors[indexColor]);
+        radius = (int) (Math.random() * 50) + 1;
+        setArea(areaCalculation(radius));
     }
 
     @Override
-    public String toString() {
-        return String.format("Figure : circle, area : %.1f square units,"
+    public String draw() {
+        return String.format("Figure : circle, area : %.1f square units, "
                         + "radius : %d units, color : %s",
                 getArea(), getRadius(), getColor());
+    }
+
+    private double areaCalculation(int radius) {
+        return Math.PI * Math.pow(radius, 2);
     }
 }

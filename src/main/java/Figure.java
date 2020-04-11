@@ -1,8 +1,25 @@
-public interface Figure {
+public abstract class Figure {
 
-    public Figure draw();
+    private String color;
+    private double area;
 
-    public double getArea();
+    public void setColor(String color) {
+        this.color = color;
+    }
 
-    public String getColor();
+    public void setArea(double area) {
+        this.area = area;
+    }
+
+    public abstract String draw();
+
+    public double getArea() {
+        return area;
+    }
+
+    public abstract void createRandomFigure();
+
+    public String getColor() {
+        return color;
+    }
 }

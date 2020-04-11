@@ -1,43 +1,37 @@
-public class Square implements Figure {
+public class Square extends Figure {
 
-    private String color;
-    private int area;
     private int side;
 
     public Square() {
+        createRandomFigure();
     }
 
-    private Square(String color, int side) {
-        this.color = color;
+    public Square(String color, int side) {
         this.side = side;
-        area = side * side;
-    }
-
-    public Figure draw() {
-        return createRandomSquare();
-    }
-
-    public double getArea() {
-        return area;
-    }
-
-    public String getColor() {
-        return color;
+        setColor(color);
+        setArea(areaCalculation(side));
     }
 
     public int getSide() {
         return side;
     }
 
-    private Figure createRandomSquare() {
+    public void createRandomFigure() {
         String[] colors = {"green", "blue", "yellow", "black"};
-        int indexColor = (int) (Math.random() * 3);
-        return new Square(colors[indexColor], (int) (Math.random() * 50) + 1);
+        int indexColor = (int) (Math.random() * 4);
+        setColor(colors[indexColor]);
+        side = (int) (Math.random() * 50) + 1;
+        setArea(areaCalculation(side));
     }
 
     @Override
-    public String toString() {
-        return String.format("Figure : square, area : %d square units, side : %d units, color : %s",
-                area, getSide(), getColor());
+    public String draw() {
+        return String.format("Figure : square, area : %.1f square units, side "
+                        + ": %d units, color : %s",
+                getArea(), getSide(), getColor());
+    }
+
+    private double areaCalculation(int side) {
+        return Math.pow(side, 2);
     }
 }

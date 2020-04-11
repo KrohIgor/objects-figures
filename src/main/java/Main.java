@@ -2,25 +2,23 @@ public class Main {
     public static void main(String[] args) {
         Figure[] figures = new Figure[20];
         for (int i = 0; i < figures.length; i++) {
+            Figure figure = null;
             if (i % 4 == 0) {
-                Figure square = new Square().draw();
-                figures[i] = square;
+                figure = new Square();
             }
             if (i % 4 == 1) {
-                Figure triangle = new Triangle().draw();
-                figures[i] = triangle;
+                figure = new Triangle();
             }
             if (i % 4 == 2) {
-                Figure circle = new Circle().draw();
-                figures[i] = circle;
+                figure = new Circle();
             }
             if (i % 4 == 3) {
-                Figure trapeze = new Trapeze().draw();
-                figures[i] = trapeze;
+                figure = new Trapeze();
             }
+            figures[i] = figure;
         }
         for (Figure figure : figures) {
-            System.out.println(figure.toString());
+            System.out.println(figure.draw());
         }
     }
 }
